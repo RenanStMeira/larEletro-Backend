@@ -7,9 +7,11 @@ export class UserController {
 
         try {
             const newUser = await user.create({
-                data: {
-                    name, email, contact, adress, password
-                }
+                name: name,
+                email: email,
+                contact: contact,
+                password: password,
+                adress: adress
             });
 
             return res.status(200).json({ message: `Usuário criado com sucesso!` });
