@@ -9,6 +9,6 @@ const userSchema = new mongoose.Schema({
     adress: { type: String }
 }, { versionKey: false } );
 
-const user = mongoose.model("users", userSchema);
+const user = mongoose.model("user", userSchema);
 
 export { user, userSchema };
