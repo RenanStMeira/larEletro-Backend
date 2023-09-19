@@ -35,3 +35,14 @@ model Admin {
 
   @@map("admin")
 }
+
+model Jobs {
+  id String @id @default(uuid())
+  name String
+  description String @unique
+  price String
+  createAdt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@map("jobs")
+}
