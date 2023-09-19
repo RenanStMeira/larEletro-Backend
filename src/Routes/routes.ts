@@ -2,6 +2,7 @@ import express from "express";
 import { UserController } from "../Controller/Users/userController";
 import { AdminController } from "../Controller/Admin/adminController";
 import { JobsController } from "../Controller/Jobs/JobsController";
+import { SchedulingController } from "../Controller/Scheduling/schedulingController";
 
 const routes = express.Router();
 
@@ -22,5 +23,10 @@ routes.get('/list/:id', JobsController.findjobsId);
 routes.post('/create/jobs', JobsController.createJobs);
 routes.put('/update/:id', JobsController.updateJobs);
 routes.delete('/delete/:id', JobsController.deleteJobs);
+
+routes.get('/list/:id', SchedulingController.listScheduling);
+routes.post('/create/jobs', SchedulingController.createScheduling);
+routes.put('/update/:id', SchedulingController.updateScheduling);
+routes.delete('/delete/:id', SchedulingController.deleteScheduling);
 
 export default routes;
