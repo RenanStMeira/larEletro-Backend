@@ -26,5 +26,5 @@
     "src/**/*.ts",
     "middlewares/**/*.ts",
     "path/to/admincontroller.ts"
-, "src/Config/Database/dbConnect.ts", "src/server.ts"  ]
+, "src/Config/Database/Mongo/dbConnect.ts", "src/server.ts"  ]
 }
