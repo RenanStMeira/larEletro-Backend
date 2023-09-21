@@ -52,6 +52,7 @@ model Scheduling {
   name String
   email String 
   contact String
+  messageuser String
   dateService String
   createAdt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt

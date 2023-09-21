@@ -18,9 +18,9 @@ export class AdminController{
                 }
             });
 
-            return res.status(200).json({message: `Admin ${name} criado com sucesso!`});
+            return res.status(200).json({message: `Admin ${name} successfully created!`});
         } catch (error) {
-            return res.status(400).json({message: 'Erro ao criar admin', error});
+            return res.status(400).json({message: 'Error creating admin', error});
         }
     };
 
@@ -36,7 +36,7 @@ export class AdminController{
 
             return res.status(200).json(findAll);
         } catch (error) {
-            return res.status(400).json({ message: `${error.message} - falha ao buscar admin` });
+            return res.status(400).json({ message: `${error.message} - Failed to fetch admin` });
         }
     };
 
@@ -51,12 +51,12 @@ export class AdminController{
             });
 
             if (!adminId) {
-                return res.status(404).json({message: 'Usuário não encontrado'})
+                return res.status(404).json({message: 'Admin not found'})
             };
 
             return res.status(200).json(adminId)
         } catch (error) {
-            return res.status(400).json({ message: 'Erro ao buscar admin por ID' });
+            return res.status(400).json({ message: 'Error when searching for admin by ID' });
 
         }
     };   
@@ -77,12 +77,12 @@ export class AdminController{
             });
 
             if (!updateAdmin) {
-                return res.status(404).json({ message: 'Admin não encontrado' });
+                return res.status(404).json({ message: 'Admin not found' });
             };
 
-            return res.status(200).json({ message: `Admin ${name} atualizado com sucesso` });
+            return res.status(200).json({ message: `Admin ${name} updated successfully` });
         } catch (error) {
-            return res.status(400).json({ message: 'Erro ao atualizar admin' });
+            return res.status(400).json({ message: 'Error updating admin' });
         }
     };
     static async deleteAdmin(req: Request, res: Response){
@@ -93,9 +93,9 @@ export class AdminController{
                 where: {id},
             });
 
-            return res.status(200).json({ message: `Admin deletado com sucesso` });
+            return res.status(200).json({ message: `Admin successfully deleted` });
         } catch (error) {
-            return res.status(400).json({ message: 'Erro deletar admin', error });
+            return res.status(400).json({ message: 'Error delete admin', error });
         }
     };
 };
