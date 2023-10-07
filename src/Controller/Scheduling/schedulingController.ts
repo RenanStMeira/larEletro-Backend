@@ -5,17 +5,17 @@ const prisma = new PrismaClient();
 
 export class SchedulingController{
     static async createScheduling(req: Request, res: Response){
-        const { name, email, contact, dateService } = req.body;
+        const { name, email, contact, dateService, messageuser } = req.body;
 
         try {
             const createScheduling = await prisma.scheduling.create({
                 data: {
-                    name, email, contact, dateService
+                    name, email, contact, dateService, messageuser
                 },
             });
             return res.json(createScheduling);
         } catch (error) {
-            return res.status(500).json({ message: 'Erro interno do servidor' });
+            return res.status(500).json({ message: 'Internal server error' });
         }
     };
 
@@ -33,26 +33,26 @@ export class SchedulingController{
                return res.json(scheduling);
 
             }else {
-               return res.status(404).json({ message: 'Usuario não encontrado' })
+               return res.status(404).json({ message: 'User not found' })
             }
                } catch {
-                return res.status(400).json({ message: 'Erro no Servidor Interno' })
+                return res.status(400).json({ message: 'Internal Server Error' })
         }
      };
 
      static async updateScheduling(req: Request, res: Response){
         const { id } = req.params;
-        const { name, email, contact, dateService } = req.body;
+        const { name, email, contact, dateService, messageuser } = req.body;
 
         try {
             const updateScheduling = await prisma.scheduling.update({
                 where: { id },
                 data: {
-                    name, email, contact, dateService
+                    name, email, contact, dateService, messageuser
                 },
             });
 
-            return res.status(201).json({message: `Usuario ${name} atualizado com sucesso`});
+            return res.status(201).json({message: `Scheduling for ${name} updated successfully`});
         } catch (error) {
             return res.status(404).json({message: ''})
         }
@@ -68,9 +68,9 @@ export class SchedulingController{
                 },
             });
 
-            return res.status(201).json({message: 'Agendamento deletado com sucesso'});
+            return res.status(201).json({message: 'Appointment deleted successfully'});
         } catch (error) {
-            return res.status(500).json({ message: 'Erro no Servidor Interno' })
+            return res.status(500).json({ message: 'Internal Server Error' })
         }
      };
 };

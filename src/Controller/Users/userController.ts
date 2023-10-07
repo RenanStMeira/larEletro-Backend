@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
-// import { user } from "../models/userModel";
 import  { PrismaClient } from "@prisma/client";
+import bcrypt from 'bcrypt';
+
 
 const prisma = new PrismaClient();
 
@@ -8,20 +9,22 @@ export class UserController {
     static async createUser(req: Request, res: Response) {
         const { name, email, contact, password, adress } = req.body;
 
+        const hash = await bcrypt.hash(password, 10);
         try {
             const newUser = await prisma.users.create({
                 data: {
                     name,
                     email,
                     contact,
-                    password,
+                    password: hash,
                     adress,
                 },
             });
+            const {password: _, ...users} = newUser;
         
-            return res.status(200).json({ message: `Usuário criado com sucesso!` });
+            return res.status(200).json({ message: `User ${name} created successfully!` });
         } catch (error) {
-            return res.status(400).json({ message: 'Erro ao criar usuário!' });
+            return res.status(400).json({ message: 'Error creating user!' });
         }
     };
 
@@ -37,7 +40,7 @@ export class UserController {
 
             return res.status(200).json(findAll);
         } catch (error) {
-            return res.status(400).json({ message: `${error.message} - falha ao buscar usuario` });
+            return res.status(400).json({ message: `${error.message} - Failed to search for user` });
         }
     };
 
@@ -52,12 +55,12 @@ export class UserController {
             });
 
             if (!user) {
-                return res.status(404).json({ message: 'Usuário não encontrado' });
+                return res.status(404).json({ message: 'User not found' });
             }
 
             return res.status(200).json(user);
         } catch (error) {
-            return res.status(400).json({ message: 'Erro ao buscar usuário por ID' });
+            return res.status(400).json({ message: 'Error when searching for user by ID' });
         } 
     };    
 
@@ -78,13 +81,13 @@ export class UserController {
             });
     
             if (!updateUser) {
-                return res.status(404).json({ message: 'Usuário não encontrado' });
+                return res.status(404).json({ message: 'User not found' });
             }
     
-            return res.status(200).json({ message: `Usuario ${name} atualizado com sucesso` });
+            return res.status(200).json({ message: `User ${name} updated successfully` });
         } catch (error) {
             console.log(error);
-            return res.status(400).json({ message: 'Erro ao atualizar usuário' });
+            return res.status(400).json({ message: 'Error updating user' });
         }
     };
 
@@ -98,9 +101,9 @@ export class UserController {
                 }
             });
 
-            return res.status(200).json({ message: `Usuario deletado com sucesso` });
+            return res.status(200).json({ message: `User deleted successfully` });
         } catch (error) { 
-            return res.status(400).json({ message: 'Erro deletar usuario', error });
+            return res.status(400).json({ message: 'Error deleting user', error });
             
         }
     };

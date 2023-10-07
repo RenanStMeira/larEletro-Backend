@@ -16,9 +16,9 @@ export class JobsController{
                 }
             });
 
-            return res.status(200).json({message: `jobs ${name} criado com sucesso!`});
+            return res.status(200).json({message: `jobs ${name} successfully created!`});
         } catch (error) {
-            return res.status(400).json({message: 'Erro ao criar jobs', error});
+            return res.status(400).json({message: 'Error creating jobs', error});
         }
     };
 
@@ -34,7 +34,7 @@ export class JobsController{
 
             return res.status(200).json(findAllJobs);
         } catch (error) {
-            return res.status(400).json({ message: `${error.message} - falha ao buscar jobs` });
+            return res.status(400).json({ message: `${error.message} - Failed to fetch jobs` });
         }
     };
 
@@ -49,12 +49,12 @@ export class JobsController{
             });
 
             if (!jobsId) {
-                return res.status(404).json({message: 'Usuário não encontrado'})
+                return res.status(404).json({message: 'Jobs not found'})
             };
 
             return res.status(200).json(jobsId)
         } catch (error) {
-            return res.status(400).json({ message: 'Erro ao buscar jobs por ID' });
+            return res.status(400).json({ message: 'Error when searching for jobs by ID' });
 
         }
     };   
@@ -73,12 +73,12 @@ export class JobsController{
             });
 
             if (!updateJobs) {
-                return res.status(404).json({ message: 'jobs não encontrado' });
+                return res.status(404).json({ message: 'jobs not found' });
             };
 
-            return res.status(200).json({ message: `jobs ${name} atualizado com sucesso` });
+            return res.status(200).json({ message: `jobs ${name} updated successfully` });
         } catch (error) {
-            return res.status(400).json({ message: 'Erro ao atualizar jobs' });
+            return res.status(400).json({ message: 'Error updating jobs' });
         }
     };
     static async deleteJobs(req: Request, res: Response){
@@ -89,9 +89,9 @@ export class JobsController{
                 where: {id},
             });
 
-            return res.status(200).json({ message: `jobs deletado com sucesso` });
+            return res.status(200).json({ message: `jobs deleted successfully` });
         } catch (error) {
-            return res.status(400).json({ message: 'Erro deletar jobs', error });
+            return res.status(400).json({ message: 'Error deleting jobs', error });
         }
     };
 };
