@@ -5,6 +5,7 @@ import { JobsController } from "../Controller/Jobs/JobsController";
 import { SchedulingController } from "../Controller/Scheduling/schedulingController";
 import { LoginUser } from "../Auth/loginUser";
 import { LoginAdmin } from "../Auth/loginAdmin";
+import { Payment } from "../Config/Payment/stripeConfig"
 
 const routes = express.Router();
 
@@ -33,5 +34,11 @@ routes.delete('/delete/scheduling/:id', SchedulingController.deleteScheduling);
 
 routes.post('/login/user', LoginUser.login);
 routes.post('/login/admin', LoginAdmin.loginAdmin);
+
+routes.post('/create/pay', Payment.createPay);
+routes.post('/list/pay/:id', Payment.listPay);
+routes.delete('/delete/pay/:id', Payment.listPay);
+
+
 
 export default routes;
