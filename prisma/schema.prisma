@@ -58,8 +58,12 @@ model Jobs {
   admin Admin? @relation(fields: [adminId], references: [id])
   adminId String?
 
+  // Relação com os pagamentos associados a este serviço
+  payments Payment[]
+  
   @@map("jobs")
 }
+
 
 model Scheduling {
   id String @id @default(uuid())
@@ -76,4 +80,19 @@ model Scheduling {
   userId String?
 
   @@map("scheduling")
+}
+
+model Payment {
+  id String @id @default(uuid())
+  sessionId String // ID da sessão do Stripe
+  status String // Status do pagamento (p.ex., "success", "failed", etc.)
+  price String // Preço do serviço
+  quantity Int // Quantidade do serviço
+  createdAt DateTime @default(now()) @map("createAdt") // Data e hora do registro do pagamento
+
+  // Relação com o serviço associado a este pagamento
+  job Jobs @relation(fields: [jobId], references: [id])
+  jobId String
+
+  @@map("payments")
 }
