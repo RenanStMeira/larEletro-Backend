@@ -6,7 +6,7 @@ import bcrypt from 'bcrypt';
 const prisma = new PrismaClient();
 
 export class UserController {
-    static async createUser(req: Request, res: Response) {
+    async createUser(req: Request, res: Response) {
         const { name, email, contact, password, adress } = req.body;
 
         const hash = await bcrypt.hash(password, 10);
@@ -28,7 +28,7 @@ export class UserController {
         }
     };
 
-    static async findAll(req: Request, res: Response) {
+    async findAll(req: Request, res: Response) {
         const { id } = req.params;
 
         try {
@@ -44,7 +44,7 @@ export class UserController {
         }
     };
 
-    static async findAllById(req: Request, res: Response) {
+    async findAllById(req: Request, res: Response) {
         const { id } = req.params;
 
         try {
@@ -64,7 +64,7 @@ export class UserController {
         } 
     };    
 
-    static async updateUser(req: Request, res: Response) {
+    async updateUser(req: Request, res: Response) {
         const { id } = req.params; // Captura o ID dos parâmetros da URL
         const { name, email, contact, password, adress } = req.body;
     
@@ -91,7 +91,7 @@ export class UserController {
         }
     };
 
-    static async deleteUser (req: Request, res: Response) {
+    async deleteUser (req: Request, res: Response) {
         const { id } = req.params;
 
         try {
