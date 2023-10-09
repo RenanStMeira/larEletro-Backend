@@ -4,9 +4,9 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export class AdminController{
-    delete(req: Request<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>) {
-        throw new Error("Method not implemented.");
-    }
+    // delete(req: Request<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>) {
+    //     throw new Error("Method not implemented.");
+    // }
     async createAdmin(req: Request, res: Response){
         const { name, email, password,contact, cnpj } = req.body
 
@@ -21,7 +21,7 @@ export class AdminController{
                 }
             });
 
-            return res.status(200).json({message: `Admin ${name} successfully created!`});
+            return res.status(200).json({message: 'Admin criado com sucesso'});
         } catch (error) {
             return res.status(400).json({message: 'Error creating admin', error});
         }

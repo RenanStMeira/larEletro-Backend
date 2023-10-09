@@ -11,20 +11,20 @@ jest.mock('bcrypt', () => ({
   const prisma = new PrismaClient();
   const userController = new UserController();
 
-  describe('UserController', () => {
+  describe('UserController tests', () => {
     afterAll(async () => {
       await prisma.$disconnect();
     });
   
     describe('createUser', () => {
-      test('should create a new user', async () => {
+      it('should create a new user', async () => {
         const req: Request = {
           body: {
-            name: 'Test User',
-            email: 'test@example.com',
+            name: 'it User',
+            email: 'it@example.com',
             contact: '123456789',
             password: '123456789',
-            address: 'Test Address',
+            address: 'it Address',
           },
         } as Request;
         const res: Response = {
@@ -35,14 +35,12 @@ jest.mock('bcrypt', () => ({
         await userController.createUser(req, res);
   
         expect(res.status).toHaveBeenCalledWith(200);
-        expect(res.json).toHaveBeenCalledWith({ message: 'User Test User created successfully!' });
+        expect(res.json).toHaveBeenCalledWith({ message: 'User it User created successfully!' });
       });
-    });
-  
-    describe('findAll', () => {
-      test('should find all users', async () => {
+
+      it('should find all users', async () => {
         const req: Request = {
-            params: { id: '177a7c6b-0ab2-4259-a577-c28c5062c96a' },
+            params: { id: 'fd7b11ce-aea4-49ca-b36e-6c7b422c0469' },
         } as unknown as Request;
         const res: Response = {
             status: jest.fn().mockReturnThis(),
@@ -52,14 +50,12 @@ jest.mock('bcrypt', () => ({
         await userController.findAll(req, res);
   
         expect(res.status).toHaveBeenCalledWith(200);
-        // Adicione aqui expectativas para a resposta JSON, se necessário
       });
     });
   
-    describe('findAllById', () => {
-      test('should find a user by ID', async () => {
+      it('should find a user by ID', async () => {
         const req: Request = {
-            params: { id: '177a7c6b-0ab2-4259-a577-c28c5062c96a' },
+            params: { id: 'fd7b11ce-aea4-49ca-b36e-6c7b422c0469' },
         } as unknown as Request;
         const res: Response = {
             status: jest.fn().mockReturnThis(),
@@ -69,14 +65,11 @@ jest.mock('bcrypt', () => ({
         await userController.findAllById(req, res);
   
         expect(res.status).toHaveBeenCalledWith(200);
-        // Adicione aqui expectativas para a resposta JSON, se necessário
       });
-    });
-  
-    describe('updateUser', () => {
-      test('should update a user', async () => {
+
+      it('should update a user', async () => {
         const req: Request = {
-            params: { id: '177a7c6b-0ab2-4259-a577-c28c5062c96a' },
+            params: { id: 'fd7b11ce-aea4-49ca-b36e-6c7b422c0469' },
             body: {
                 name: 'Updated User',
                 email: 'updated@example.com',
@@ -95,12 +88,10 @@ jest.mock('bcrypt', () => ({
         expect(res.status).toHaveBeenCalledWith(200);
         expect(res.json).toHaveBeenCalledWith({ message: 'User Updated User updated successfully' });
       });
-    });
-  
-    describe('deleteUser', () => {
-      test('should delete a user', async () => {
+
+      it('should delete a user', async () => {
         const req: Request = {
-            params: { id: '177a7c6b-0ab2-4259-a577-c28c5062c96a' },
+            params: { id: 'fd7b11ce-aea4-49ca-b36e-6c7b422c0469' },
         } as unknown as Request;
         const res: Response = {
             status: jest.fn().mockReturnThis(),
@@ -113,42 +104,6 @@ jest.mock('bcrypt', () => ({
         expect(res.json).toHaveBeenCalledWith({ message: 'User deleted successfully' });
       });
     });
-  });
   
+   
 
-
-// const prismaMock = mock(PrismaClient);
-
-// describe('UserControllers Tests', () => {
-//     let userController: UserController;
-//     let req: Request;
-//     let res: Response;
-
-//     beforeEach(() => {
-//         userController = new UserController();
-//         req = {
-//             params: {
-//                 id: '13375807-4f50-4e3f-a203-caa94cacdb95'
-//             }
-//         } as unknown as Request;
-//         res = {
-//             status: jest.fn().mockReturnThis(),
-//             json: jest.fn(),
-//         } as unknown as Response;
-//     });
-
-//     it('Shold return a user', () => {
-//         const user = {
-//             id: '13375807-4f50-4e3f-a203-caa94cacdb95',
-//             name: 'test name',
-//             email: 'email@test.com',
-//             contact: '18999999999'
-//         };
-
-//         const userMock = jest.fn().mockResolvedValue(user)
-
-//         res.json= userMock;
-//         userController.findAll(req, res);
-//         expect(res.json).toBe(userMock);
-//     });
-// });
