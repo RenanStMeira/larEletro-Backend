@@ -23,7 +23,7 @@ jest.mock('bcrypt', () => ({
             name: 'Test User',
             email: 'test@example.com',
             contact: '123456789',
-            password: 'password',
+            password: '123456789',
             address: 'Test Address',
           },
         } as Request;
@@ -42,7 +42,7 @@ jest.mock('bcrypt', () => ({
     describe('findAll', () => {
       test('should find all users', async () => {
         const req: Request = {
-            params: { id: '1' },
+            params: { id: '177a7c6b-0ab2-4259-a577-c28c5062c96a' },
         } as unknown as Request;
         const res: Response = {
             status: jest.fn().mockReturnThis(),
@@ -59,7 +59,7 @@ jest.mock('bcrypt', () => ({
     describe('findAllById', () => {
       test('should find a user by ID', async () => {
         const req: Request = {
-            params: { id: '1' },
+            params: { id: '177a7c6b-0ab2-4259-a577-c28c5062c96a' },
         } as unknown as Request;
         const res: Response = {
             status: jest.fn().mockReturnThis(),
@@ -76,7 +76,7 @@ jest.mock('bcrypt', () => ({
     describe('updateUser', () => {
       test('should update a user', async () => {
         const req: Request = {
-            params: { id: '1' },
+            params: { id: '177a7c6b-0ab2-4259-a577-c28c5062c96a' },
             body: {
                 name: 'Updated User',
                 email: 'updated@example.com',
@@ -100,7 +100,7 @@ jest.mock('bcrypt', () => ({
     describe('deleteUser', () => {
       test('should delete a user', async () => {
         const req: Request = {
-            params: { id: '1' },
+            params: { id: '177a7c6b-0ab2-4259-a577-c28c5062c96a' },
         } as unknown as Request;
         const res: Response = {
             status: jest.fn().mockReturnThis(),
