@@ -25,11 +25,11 @@ describe('AdminController tests', () => {
     it ('should return a admin', () => {
         const admin = {
             id: '13375807-4f50-4e3f-a203-caa94cacdb95',
-            name: "Teste Meira",
+            name: "Teste",
             email: "teste@gmail.com",
             password: "123456",
-            contact: "18935002592",
-            cnpj: "34408772000189"
+            contact: "18999999999",
+            cnpj: "1111111111111"
         };
 
         const adminMock = jest.fn().mockResolvedValue(admin);

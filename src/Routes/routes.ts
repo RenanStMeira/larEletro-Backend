@@ -10,12 +10,14 @@ import { Payment } from "../Config/Payment/stripeConfig"
 const routes = express.Router();
 
 const adminController = new AdminController();
+const userController = new UserController();
 
-routes.get('/list/user', UserController.findAll);
-routes.get('/list/:id', UserController.findAllById);
-routes.post('/create/user', UserController.createUser);
-routes.put('/update/:id', UserController.updateUser);
-routes.delete('/delete/:id', UserController.deleteUser);
+
+routes.get('/list/user', userController.findAll);
+routes.get('/list/:id', userController.findAllById);
+routes.post('/create/user', userController.createUser);
+routes.put('/update/:id', userController.updateUser);
+routes.delete('/delete/:id', userController.deleteUser);
 
 routes.get('/list/admin', adminController.findAll);
 routes.get('/list/admin/:id', adminController.findAdminId);
