@@ -4,7 +4,10 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export class AdminController{
-    static async createAdmin(req: Request, res: Response){
+    delete(req: Request<import("express-serve-static-core").ParamsDictionary, any, any, import("qs").ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>) {
+        throw new Error("Method not implemented.");
+    }
+    async createAdmin(req: Request, res: Response){
         const { name, email, password,contact, cnpj } = req.body
 
         try {
@@ -24,7 +27,7 @@ export class AdminController{
         }
     };
 
-    static async findAll(req: Request, res: Response){
+    async findAll(req: Request, res: Response){
         const { id } = req.params;
 
         try {
@@ -40,7 +43,7 @@ export class AdminController{
         }
     };
 
-    static async findAdminId(req: Request, res: Response){
+    async findAdminId(req: Request, res: Response){
         const { id } = req.params;
 
         try {
@@ -60,7 +63,7 @@ export class AdminController{
 
         }
     };   
-    static async updateAdmin(req: Request, res: Response){
+    async updateAdmin(req: Request, res: Response){
         const { id } = req.params;
         const { name, email, password,contact, cnpj } = req.body;
 
@@ -85,7 +88,7 @@ export class AdminController{
             return res.status(400).json({ message: 'Error updating admin' });
         }
     };
-    static async deleteAdmin(req: Request, res: Response){
+    async deleteAdmin(req: Request, res: Response){
         const { id } = req.params;
 
         try {

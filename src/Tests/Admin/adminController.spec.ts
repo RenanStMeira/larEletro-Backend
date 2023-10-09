@@ -14,13 +14,29 @@ describe('AdminController tests', () => {
         adminController = new AdminController();
         req = {
             params: {
-                id: 'b0cdf861-a1d9-469f-b3bb-abee63513e31'
+                id: '13375807-4f50-4e3f-a203-caa94cacdb95'
             }
         } as unknown as Request;
         res = {
             status: jest.fn().mockReturnThis(),
             json: jest.fn(),
         } as unknown as Response;
+    });
+    it ('should return a admin', () => {
+        const admin = {
+            id: '13375807-4f50-4e3f-a203-caa94cacdb95',
+            name: "Teste",
+            email: "teste@gmail.com",
+            password: "123456",
+            contact: "18999999999",
+            cnpj: "1111111111111"
+        };
+
+        const adminMock = jest.fn().mockResolvedValue(admin);
+
+        res.json = adminMock;
+        adminController.findAll(req, res);
+        expect(res.json).toBe(adminMock);
     });
 });
 
